@@ -1,0 +1,107 @@
+/* ===== базовое оформление ===== */
+:root {
+    --bg-dark:   #1e1f28;
+    --panel:     #2c2d38;
+    --card:      #313240;
+    --text:      #e4e6ef;
+    --accent:    #4d8bff;
+    --grey:      #8d93a4;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg-dark);
+    color: var(--text);
+    font-family: "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* ===== навигация ===== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--panel);
+    padding: 12px 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.4);
+}
+
+.navbar a { color: var(--text); margin-right: 18px; text-decoration: none; }
+.navbar a:hover { color: var(--accent); }
+
+.logo { font-weight: 600; }
+
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-right .user { color: var(--grey); }
+
+/* ===== кнопка‑ссылка для logout ===== */
+button.linklike {
+    background: none;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
+}
+
+/* ===== панель роли ===== */
+.rolebar {
+    background: var(--panel);
+    margin: 0;
+    padding: 10px 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.3);
+}
+
+.rolebar a { color: var(--accent); text-decoration: none; }
+.rolebar a:hover { text-decoration: underline; }
+
+.role { font-weight: 500; color: var(--accent); }
+
+/* ===== контейнер контента ===== */
+main { max-width: 900px; margin: 32px auto; }
+
+/* ===== списки писем ===== */
+ul.message-list { list-style: none; padding: 0; margin: 0; }
+ul.message-list li {
+    background: var(--card);
+    margin-bottom: 16px;
+    padding: 16px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.4);
+}
+ul.message-list li:hover { background: #3b3c4d; }
+
+/* ===== таблица статусов ===== */
+table.status-table {
+    width: 100%; border-collapse: collapse; margin-top: 16px;
+    font-size: 0.95rem;
+}
+.status-table th, .status-table td {
+    padding: 10px 12px;
+    border: 1px solid #444654;
+}
+.status-table th { background: #393a48; }
+
+/* ===== формы ===== */
+form textarea, form input[type=text] {
+    width: 100%; box-sizing: border-box;
+    padding: 10px 14px;
+    background: var(--panel);
+    border: 1px solid #4b4d5c;
+    border-radius: 8px;
+    color: var(--text);
+    resize: vertical;
+    margin-bottom: 14px;
+}
+form button[type=submit] {
+    padding: 10px 22px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+form button[type=submit]:hover { filter: brightness(1.15); }

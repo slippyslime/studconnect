@@ -1,0 +1,20 @@
+{% extends "core/base.html" %}
+
+{% block title %}Отправленные сообщения — StudConnect{% endblock %}
+
+{% block content %}
+<h1>📤 Отправленные сообщения</h1>
+{% if messages %}
+    <ul>
+    {% for msg in messages %}
+        <li>
+            <a href="{% url 'message_detail' msg.pk %}">{{ msg.subject|default:"(без темы)" }}</a>
+            — {{ msg.created_at|date:"d.m.Y H:i" }} |
+            Статус: {{ msg.status_display }}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Пока нет отправленных сообщений.</p>
+{% endif %}
+{% endblock %}

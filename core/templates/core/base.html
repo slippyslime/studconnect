@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}StudConnect{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+
+  <!-- ============  верхняя навигация  ============ -->
+  <nav class="navbar">
+      <div class="nav-left">
+          <a href="{% url 'home' %}" class="logo">🏠 StudConnect</a>
+
+          {% if user.is_authenticated %}
+              <a href="{% url 'compose' %}">✉️ Новое</a>
+              <a href="{% url 'inbox' %}">📥 Входящие</a>
+              <a href="{% url 'outbox' %}">📤 Отправленные</a>
+          {% endif %}
+      </div>
+
+      <div class="nav-right">
+          {% if user.is_authenticated %}
+              <span class="user">👤 {{ user.username }}</span>
+              <form action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="linklike">Выйти</button>
+              </form>
+          {% else %}
+              <a href="{% url 'login' %}">Войти</a> /
+              <a href="{% url 'register' %}">Регистрация</a>
+          {% endif %}
+      </div>
+  </nav>
+
+  <!-- ============  панель выбора роли  ============ -->
+  <section class="rolebar">
+      {% if user.is_authenticated %}
+          <span class="role">Текущая роль: {{ request.session.active_role|default:user.role }}</span>
+      {% else %}
+          <span class="role">Вы не авторизованы</span>
+      {% endif %}
+      &nbsp;|&nbsp;Сменить роль:
+      <a href="{% url 'switch_role' 'student' %}">Студент</a> /
+      <a href="{% url 'switch_role' 'teacher' %}">Преподаватель</a> /
+      <a href="{% url 'switch_role' 'dean' %}">Деканат</a>
+  </section>
+
+  <main>
+      {% block content %}{% endblock %}
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+{% extends "core/base.html" %}
+
+{% block title %}Главная — StudConnect{% endblock %}
+
+{% block content %}
+    <h1>Добро пожаловать в StudConnect</h1>
+    <p>Текущая роль: <strong>{{ current_role|capfirst }}</strong></p>
+    <p>Для тестирования интерфейса выберите другую роль через навигацию вверху.</p>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "core/base.html" %}
+{% block title %}Сообщение —StudConnect{% endblock %}
+
+{% block content %}
+<h2>{{ message.subject|default:"(без темы)" }}</h2>
+<p><strong>От:</strong> {{ message.sender.username }}</p>
+<p><strong>Кому:</strong>
+   {% for r in message.recipients.all %}
+      {{ r.username }}{% if not forloop.last %}, {% endif %}
+   {% endfor %}
+</p>
+<p><strong>Дата:</strong> {{ message.created_at|date:"d.m.YH:i" }}</p>
+<hr>
+<p>{{ message.body|linebreaks }}</p>
+
+{% if statuses %}
+<hr>
+<h3>Статусы получателей</h3>
+<table border="1" cellpadding="4">
+  <tr>
+    <th>Получатель</th>
+    <th>Статус</th>
+    <th>Когда</th>
+  </tr>
+  {% for st in statuses %}
+  <tr>
+    <td>{{ st.user.username }}</td>
+    <td>{{ st.get_status_display }}</td>
+    <td>{{ st.changed_at|date:"d.m.YH:i" }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+<hr>
+<h3>Ответить</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Отправить ответ</button>
+</form>
+{% endblock %}
