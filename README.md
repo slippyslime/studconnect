@@ -31,8 +31,8 @@
 ### 1. Клонирование репозитория
 
 ```bash
-git clone https://github.com/slippyslime/weatherapp.git
-cd weatherapp
+git clone https://github.com/slippyslime/studconnect.git
+cd studconnect
 ```
 
 
